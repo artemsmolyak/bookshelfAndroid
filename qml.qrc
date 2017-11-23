@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>AddNew.qml</file>
+        <file>SearchDelegate.qml</file>
+        <file>FlipBar.qml</file>
+        <file>LineInput.qml</file>
+        <file>pics/icon-search.png</file>
+        <file>pics/icon.png</file>
+        <file>book.cpp</file>
+        <file>book.h</file>
+        <file>client.cpp</file>
+        <file>client.h</file>
+        <file>database.cpp</file>
+        <file>database.h</file>
+        <file>main.cpp</file>
+        <file>myimageprovider.cpp</file>
+        <file>myimageprovider.h</file>
+        <file>pics/339405.png</file>
+    </qresource>
+</RCC>
