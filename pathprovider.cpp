@@ -15,12 +15,12 @@ PathProvider::~PathProvider()
 
 QPixmap PathProvider::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize)
 {
+    Q_UNUSED(size);
+    Q_UNUSED(requestedSize);
+
     QString path = id;
     path = path.replace("file://", "");
     QPixmap pixmap(path);
 
-
     return pixmap;
-
-   // return QPixmap(200, 200);
 }

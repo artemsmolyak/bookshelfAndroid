@@ -20,42 +20,6 @@ Window {
         id: stackView
         initialItem: page
         anchors.fill: parent
-
-        delegate: StackViewDelegate {
-               function transitionFinished(properties)
-               {
-                   properties.exitItem.x = 0
-                   properties.exitItem.rotation = 0
-               }
-
-               pushTransition: StackViewTransition {
-                   SequentialAnimation {
-                       ScriptAction {
-                           script: enterItem.rotation = 0
-                       }
-                       PropertyAnimation {
-                           target: enterItem
-                           property: "x"
-                           from: enterItem.width
-                           to: 0
-                       }
-                       PropertyAnimation {
-                           target: enterItem
-                           property: "rotation"
-                           from: 90
-                           to: 0
-                       }
-                   }
-                   PropertyAnimation {
-                       target: exitItem
-                       property: "x"
-                       from: 0
-                       to: -exitItem.width
-                   }
-               }
-           }
-
-
     }
 
 
@@ -92,31 +56,6 @@ Window {
                             }
                         }
 
-
-
-//                        states:[
-//                            State{
-//                                name: "State1"
-//                                PropertyChanges{target : addRect; x: 0; y: 0}
-
-//                            },
-//                            State{
-//                                name: "State2"
-//                                PropertyChanges{target : addRect; x: 10; y:300}
-//                            }
-//                        ]
-//                        transitions: [
-//                        Transition {
-//                                from: "State1"
-//                                to: "State2"
-//                                PropertyAnimation{
-//                                    target: addRect
-//                                    properties: "x,y"
-//                                    easing.type: Easing.InCirc
-//                                    duration: 5000
-//                                }
-//                            }
-//                        ]
                     }
 
 
@@ -199,32 +138,34 @@ Window {
                     color : "grey"
 
 
-                    Row{
-                        anchors.verticalCenter: parent.verticalCenter
 
-                        Image{
-                            width: 100
-                            height: heightRec * 0.9
-                            source: "image://myprovider/"+modelData.id
+                        Row{
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            Image{
+                                width: 100
+                                height: heightRec * 0.9
+                                source: "image://myprovider/"+modelData.id
+                            }
+
+                            Column{
+                                Text{  text:     modelData.bookname; color : "white"}
+                                Text{  text:     modelData.author; color : "white"  }
+                            }
+
                         }
 
-                        Column{
-                            Text{  text:     modelData.bookname; color : "white"}
-                            Text{  text:     modelData.author  }
+                        MouseArea{
+                            anchors.fill: parent
+                            onClicked: {
+                                stackView.push({item: Qt.resolvedUrl("EditItem.qml"),
+                                               properties: {
+                                                   id : modelData.id
+                                               }})
                         }
-
-
                     }
-
-                    MouseArea{
-                        onClicked: {
-                            color: "black"
-                        }
-                    }
-
                 }
             }//delegate
-
 
         }
  }

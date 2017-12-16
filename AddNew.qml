@@ -10,6 +10,7 @@ Rectangle {
 
     function save(){
         client.save(bookname.text, textAuthor.text, fileDialog.fileUrl)
+        client.update()
     }
 
 
@@ -25,11 +26,9 @@ Column{
 
     Rectangle{
         id: bookname
-        property string text : textfield.text
-
 
         width: parent.width
-        height:  100
+        height:  50
         color:  "#999999"
 
         ScrollView {
@@ -37,16 +36,25 @@ Column{
             anchors.fill: parent
             clip : true
 
-            TextField {
-                id : textfield
-                placeholderText: "Book title"
+            TextEdit {
+                id : textBookname
+
+                width: bookname.width
+                height: 50
+
                 color: "#ffffff"
                 font.pixelSize: 25
-                width: bookname.width
 
-                background: Rectangle {
-                 color:  "#999999"
-              }
+                property string placeholderText: "Bookname"
+
+                 Text {
+                     text: textBookname.placeholderText
+                     color: "grey"
+                     visible: !textBookname.text
+                     font.pixelSize: 25
+                 }
+
+
             }
         }
 
@@ -64,8 +72,7 @@ Column{
         id: author
 
         width: parent.width
-        height:  100
-
+        height:  50
         color:  "#999999"
 
         ScrollView {
@@ -75,23 +82,23 @@ Column{
 
             TextEdit {
                 id: textAuthor
-                width: 200
+                width:  bookname.width
                 height: 50
                 font.pixelSize: 25
                 color: "#ffffff"
 
                 property string placeholderText: "Author"
 
-                Text {
-                    text: textAuthor.placeholderText
-                    color: "#aaa"
-                    visible: !textEdit.text
-                    font.pixelSize: 25
-                }
+                 Text {
+                     text: textAuthor.placeholderText
+                     color: "grey"
+                     visible: !textAuthor.text
+                     font.pixelSize: 25
+                 }
             }
         }
 
-    }  //Rectangle
+    }  //author
 
     Rectangle { id: line; color: "#707070"; width: parent.width; height: 1; }
 
@@ -123,6 +130,28 @@ Column{
 
 
       Rectangle {  color: "#707070"; width: parent.width; height: 1; }
+
+      Button {
+              id: buttonFind
+              text: "Search"
+
+              background: Rectangle {
+                  implicitWidth: 100
+                  implicitHeight: 40
+                  color: button.down ? "#d6d6d6" : "#f6f6f6"
+                  border.color: "#26282a"
+                  border.width: 1
+                  radius: 4
+              }
+
+              MouseArea{
+                  anchors.fill: parent
+                  onClicked: {
+                       stackView.push(Qt.resolvedUrl("Search.qml"))
+                  }
+              }
+          }
+
 
 }
 

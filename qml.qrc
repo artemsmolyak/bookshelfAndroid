@@ -17,5 +17,8 @@
         <file>myimageprovider.cpp</file>
         <file>myimageprovider.h</file>
         <file>pics/339405.png</file>
+        <file>Search.qml</file>
+        <file>EditItem.qml</file>
+        <file>pics/navigation_previous_item.png</file>
     </qresource>
 </RCC>

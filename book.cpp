@@ -6,14 +6,12 @@ Book::Book()
 }
 
 
-
 Book::Book(const Book &book)
 {
      m_id = book.m_id;
      m_bookname = book.m_bookname;
     m_author = book.m_author;
     m_rating = book.m_rating;
-    //m_image = book.m_image;
     m_review = book.m_review;
 }
 

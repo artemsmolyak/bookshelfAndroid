@@ -168,3 +168,56 @@ void Database::save(QString bookname, QString author, QString imgpath)
     q.exec();
 
 }
+
+QString Database::getBookname(int id)
+{
+    QSqlQuery q;
+    q.prepare("SELECT bookname FROM bookshelfA WHERE id = ?");
+    q.addBindValue(id);
+    q.exec();
+
+
+    QString bookname;
+
+     while (q.next()) {
+          bookname =  q.value(0).toString();
+     }
+
+
+    return bookname;
+}
+
+QString Database::getAuthor(int id)
+{
+    QSqlQuery q;
+    q.prepare("SELECT author FROM bookshelfA WHERE id = ?");
+    q.addBindValue(id);
+    q.exec();
+
+
+    QString author;
+
+     while (q.next()) {
+          author =  q.value(0).toString();
+     }
+
+
+    return author;
+}
+
+QString Database::getReview(int id)
+{
+    QSqlQuery q;
+    q.prepare("SELECT review FROM bookshelfA WHERE id = ?");
+    q.addBindValue(id);
+    q.exec();
+
+
+    QString review;
+
+     while (q.next()) {
+          review =  q.value(0).toString();
+     }
+
+    return review;
+}

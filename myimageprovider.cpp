@@ -1,11 +1,6 @@
 #include "myimageprovider.h"
 
 
-//MyImageProvider::MyImageProvider(QQmlImageProviderBase::ImageType type, QQmlImageProviderBase::Flags flags)
-//{
-
-//}
-
 MyImageProvider::MyImageProvider(Client *client): QQuickImageProvider(QQuickImageProvider::Pixmap)
 {
     this->client = client;
@@ -22,7 +17,6 @@ QPixmap MyImageProvider::requestPixmap(const QString &id, QSize *size, const QSi
     Database * database =  client->getDatabase();
 
     QImage image = database->getImage(id.toInt());
-
 
     QPixmap pixmap = QPixmap::fromImage(image);
 

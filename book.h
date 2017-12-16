@@ -12,7 +12,6 @@ class Book : public QObject
     QString m_bookname;
     QString m_author;
     int m_rating;
-   // QImage m_image;
     QString m_review;
 
 
@@ -20,7 +19,6 @@ class Book : public QObject
     Q_PROPERTY(QString bookname READ bookname WRITE setBookname NOTIFY booknameChanged)
     Q_PROPERTY(QString author READ author WRITE setAuthor NOTIFY authorChanged)
     Q_PROPERTY(int rating READ rating WRITE setRating NOTIFY ratingChanged)
-   // Q_PROPERTY(int image READ image WRITE setImage NOTIFY imageChanged)
     Q_PROPERTY(QString review READ review WRITE setReview NOTIFY reviewChanged)
 
 public:
@@ -33,7 +31,6 @@ public:
     QString bookname(){return m_bookname;}
     QString author(){return m_author;}
     int rating(){return m_rating;}
-  //  QImage image(){return m_image;}
     QString review(){return m_review;}
 
 
@@ -41,10 +38,7 @@ public:
     void setBookname(QString bookname){m_bookname = bookname;}
     void setAuthor(QString author){m_author = author;}
     void setRating(int rating){m_rating = rating;}
-    //void setImage(QImage image){m_image = image;}
     void setReview(QString review){m_review = review;}
-
-
 
 
 

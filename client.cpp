@@ -28,6 +28,44 @@ void Client::save(QString bookname, QString author, QString imgPath)
 
 }
 
+void Client::update()
+{
+    QList<Book*> bookList =  database->getAll();
+
+    QList<QObject*> list;
+
+    for(int i = 0; i < bookList.size(); i++){
+            Book * b = bookList.at(i);
+
+    QObject * obj = dynamic_cast<QObject*>(b);
+
+    list.append(obj);
+    }
+
+    qml_root_context->setContextProperty("myModel", QVariant::fromValue(list));
+}
+
+QVariant Client::getBookname(QVariant id)
+{
+    return database->getBookname(id.toInt());
+
+}
+
+QVariant Client::getAuthor(QVariant id)
+{
+    return database->getAuthor(id.toInt());
+}
+
+QVariant Client::getReview(QVariant id)
+{
+    return database->getReview(id.toInt());
+}
+
+void Client::search()
+{
+
+}
+
 Client::Client(QObject *parent) : QObject(parent)
 {
     database = new Database;
@@ -43,18 +81,6 @@ void Client::setQmlRootContext(QQmlContext *root)
     qml_root_context = root;
 
 
-    QList<Book*> bookList =  database->getAll();
-
-    QList<QObject*> list;
-
-    for(int i = 0; i < bookList.size(); i++){
-    Book * b = bookList.at(i);
-
-    QObject * obj = dynamic_cast<QObject*>(b);
-
-    list.append(obj);
-    }
-
-    qml_root_context->setContextProperty("myModel", QVariant::fromValue(list));
+     update();
 
 }

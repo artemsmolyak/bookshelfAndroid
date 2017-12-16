@@ -25,6 +25,17 @@ public:
     void setPicture(QVariant path);
 
     Q_INVOKABLE void save(QString bookname, QString author, QString img);
+    Q_INVOKABLE void update();
+
+
+
+
+    Q_INVOKABLE QVariant getBookname(QVariant id);
+    Q_INVOKABLE QVariant getAuthor(QVariant id);
+    Q_INVOKABLE QVariant getReview(QVariant id);
+
+
+    Q_INVOKABLE void search();
 
 signals:
 

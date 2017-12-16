@@ -24,6 +24,9 @@ public:
     QImage getImage(int id);
 
     void save(QString bookname, QString author, QString imgpath);
+    QString getBookname(int id);
+    QString getAuthor(int id);
+    QString getReview(int id);
 
 };
 
