@@ -15,6 +15,27 @@ Rectangle {
         console.log("cli " + picPath + "+++")
     }
 
+    function paintStars(last){
+        var stars = [
+                    firstStar,
+                    secondStar,
+                    thirdStar,
+                    forthStar,
+                    fifthStar,
+                    sixthStar
+                ]
+
+        var index
+        for(index = 0; index < last; index++){
+                  stars[index].starOn = true
+        }
+
+        for(index = last; index < 6; index++){
+            stars[index].starOn = false
+        }
+
+    }
+
 
     function setPicPath(path){
 
@@ -224,14 +245,102 @@ Item{
     }
 }
 
+      Rectangle {   color: "#707070"; width: parent.width; height: 1; }
 
 
-      Rectangle {id : lineBeforeReview;  color: "#707070"; width: parent.width; height: 1; }
+
+
+
+
+      Rectangle{
+          width: parent.width
+          height: 50
+          color: "white"
+          Row{
+              anchors.horizontalCenter: parent.horizontalCenter
+
+              Image{
+                id: firstStar
+                property bool starOn : false
+
+                source: starOn ? "pics/star_fill.png" : "pics/star_no_fill.png"
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        paintStars(1)
+                    }
+                }
+              }
+              Image{
+                  id: secondStar
+                  property bool starOn : false
+                  source: starOn ? "pics/star_fill.png" : "pics/star_no_fill.png"
+                  MouseArea{
+                      anchors.fill: parent
+                      onClicked: {
+                          paintStars(2)
+                      }
+                  }
+              }
+              Image{
+                  id: thirdStar
+                  property bool starOn : false
+                  source: starOn ? "pics/star_fill.png" : "pics/star_no_fill.png"
+                  MouseArea{
+                      anchors.fill: parent
+                      onClicked: {
+                          paintStars(3)
+                      }
+                  }
+              }
+
+              Image{
+                  id: forthStar
+                 property bool starOn : false
+                  source: starOn ? "pics/star_fill.png" : "pics/star_no_fill.png"
+
+                  MouseArea{
+                      anchors.fill: parent
+                      onClicked: {
+                          paintStars(4)
+                      }
+                  }
+              }
+
+              Image{
+                  id: fifthStar
+                  property bool starOn : false
+                  source: starOn ? "pics/star_fill.png" : "pics/star_no_fill.png"
+                  MouseArea{
+                      anchors.fill: parent
+                      onClicked: {
+                          paintStars(5)
+                      }
+                  }
+              }
+              Image{
+                  id: sixthStar
+                 property bool starOn : false
+                 source: starOn ? "pics/star_fill.png" : "pics/star_no_fill.png"
+                 MouseArea{
+                     anchors.fill: parent
+                     onClicked: {
+                         paintStars(6)
+                     }
+                 }
+              }
+
+          }
+      }
+
+
+
+      Rectangle { color: "#707070"; width: parent.width; height: 1; }
 
       Rectangle{
           id: situation
           width: parent.width
-          height: 150
+          height: 100
            radius: 5
 
           ScrollView {

@@ -20,5 +20,7 @@
         <file>Search.qml</file>
         <file>EditItem.qml</file>
         <file>pics/navigation_previous_item.png</file>
+        <file>pics/star_no_fill.png</file>
+        <file>pics/star_fill.png</file>
     </qresource>
 </RCC>
