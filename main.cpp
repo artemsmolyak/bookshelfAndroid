@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     context->setContextProperty("client", &client);
     client.setQmlRootContext(context);
 
+
     MyImageProvider *imageProvider = new MyImageProvider(&client);
     engine.addImageProvider("myprovider",imageProvider);
 
@@ -27,6 +28,9 @@ int main(int argc, char *argv[])
 
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+     client.setQmlRoot(engine.rootObjects().value(0));
+
 
     if (engine.rootObjects().isEmpty())
         return -1;

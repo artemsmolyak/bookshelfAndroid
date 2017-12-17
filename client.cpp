@@ -11,14 +11,6 @@ void Client::setDatabase(Database *value)
     database = value;
 }
 
-void Client::setPicture(QVariant path)
-{
-
-
-
-
-
-}
 
 void Client::save(QString bookname, QString author, QString imgPath)
 {
@@ -63,13 +55,51 @@ QVariant Client::getReview(QVariant id)
 
 void Client::search()
 {
+    QString path = "/home/artem/Pictures/forBooks";
 
+    QDir * dir = new QDir(path);
+
+    QList<QFileInfo> list = dir->entryInfoList();
+
+
+        QStringList modelList;
+
+    for (QFileInfo fileInfo : list) {
+            qDebug() <<   fileInfo.filePath()  ;
+            modelList<< fileInfo.filePath();
+        }
+
+
+
+//    for(QList<QFileInfo>::const_iterator p = list.constBegin(); p != list.end();  ++p){
+//        qDebug() << p->fileName();
+//        modelList<< p->fileName();
+//    }
+
+
+     qml_root_context->setContextProperty("modelPhoto", QVariant::fromValue(modelList));
+
+
+}
+
+void Client::setPicPath(QVariant path)
+{
+    QObject * obj = qml_root->findChild<QObject*>("addnew");
+
+    if (obj)
+    {
+         QMetaObject::invokeMethod(obj, "setPicPath", Q_ARG(QVariant, path));
+    }
+    else
+    {
+        qDebug() << "there is no object " << qml_root->children();
+    }
 }
 
 Client::Client(QObject *parent) : QObject(parent)
 {
     database = new Database;
-    //qml_root = NULL;
+    qml_root = NULL;
     qml_root_context = NULL;
 }
 
@@ -83,4 +113,13 @@ void Client::setQmlRootContext(QQmlContext *root)
 
      update();
 
+}
+
+
+void Client::setQmlRoot(QObject *root)
+{
+    if (qml_root == root)
+        return;
+
+    qml_root = root;
 }
